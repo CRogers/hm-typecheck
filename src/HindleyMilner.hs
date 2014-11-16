@@ -7,6 +7,7 @@ typeOf :: Expr -> Maybe Type
 typeOf e = case e of
     Const (Boolean _) -> Just BoolTy
     Const (Num _) -> Just NumTy
+    Abs _ _ -> Just $ BoolTy :-> BoolTy
     If c a b -> do
         tc <- typeOf c
         guard $ tc == BoolTy

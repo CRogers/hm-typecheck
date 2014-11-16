@@ -5,10 +5,11 @@ data Constant
     | Num Integer
     deriving (Show, Eq)
 
+infixr 5 :->
 data Type
     = BoolTy
     | NumTy
-    | FuncTy
+    | (:->) Type Type
     deriving (Show, Eq)
 
 data Expr

@@ -35,3 +35,6 @@ test = hspec $ do
 
     it "an if statement where the condition is not of type BoolTy should fail" $ do
       expectToFailTypeInference $ If three true true
+
+    it "an abstraction returning a BoolTy should have type BoolTy -> BoolTy" $ do
+      Abs "x" true `shouldHaveType` (BoolTy :-> BoolTy)
