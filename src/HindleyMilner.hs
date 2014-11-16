@@ -10,7 +10,11 @@ typeOf e = case e of
     Abs _ e -> do
         te <- typeOf e
         return $ BoolTy :-> te
-    App f e -> Nothing
+    App f e -> do
+        tf <- typeOf f
+        case tf of
+            _ :-> _ -> return BoolTy
+            _ -> Nothing
     If c a b -> do
         tc <- typeOf c
         guard $ tc == BoolTy

@@ -48,3 +48,6 @@ test = hspec $ do
     describe "Application:" $ do
       it "applying a BoolTy to BoolTy should fail" $ do
         expectToFailTypeInference $ App true true
+
+      it "applying a BoolTy to an abstraction of type BoolTy -> BoolTy should result in a BoolTy" $ do
+        App (Abs "x" true) true `shouldHaveType` BoolTy
