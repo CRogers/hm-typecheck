@@ -38,3 +38,6 @@ test = hspec $ do
 
     it "an abstraction returning a BoolTy should have type BoolTy -> BoolTy" $ do
       Abs "x" true `shouldHaveType` (BoolTy :-> BoolTy)
+
+    it "an abstraction returning an NumTy should have type BoolTy -> NumTy" $ do
+      Abs "x" three `shouldHaveType` (BoolTy :-> NumTy)
