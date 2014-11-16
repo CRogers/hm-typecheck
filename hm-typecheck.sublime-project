@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{ "path": "." }
+	],
+	"settings": {
+		"ghci_command": ["nix-shell", "--pure", "--command", "cabal repl"],
+		"ghci_test": {
+			"module": "test-src/Test.hs",
+			"command": "test"
+		}
+	}
+}
