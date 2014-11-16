@@ -7,6 +7,7 @@ data Constant
 
 data Type
     = BoolTy
+    | NumTy
     deriving (Show, Eq)
 
 data Expr
