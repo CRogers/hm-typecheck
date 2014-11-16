@@ -6,7 +6,7 @@ import HindleyMilner
 
 test :: IO ()
 test = hspec $ do
-  describe "HindleyMilner:" $ do
+  describe "HindleyMilner" $ do
     let shouldHaveType e t = typeOf e `shouldBe` Just t
     let expectToFailTypeInference e = typeOf e `shouldBe` Nothing
 
@@ -38,9 +38,13 @@ test = hspec $ do
       it "when the condition is not of type BoolTy should fail" $ do
         expectToFailTypeInference $ If three true true
 
-    describe "Abstractions" $ do
+    describe "Abstractions:" $ do
       it "when the body is of type BoolTy it should have type BoolTy -> BoolTy" $ do
         Abs "x" true `shouldHaveType` (BoolTy :-> BoolTy)
 
       it "when the body is of type NumTy it should have type BoolTy -> NumTy" $ do
         Abs "x" three `shouldHaveType` (BoolTy :-> NumTy)
+
+    describe "Application:" $ do
+      it "applying a BoolTy to BoolTy should fail" $ do
+        expectToFailTypeInference $ App true true
