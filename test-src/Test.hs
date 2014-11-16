@@ -2,13 +2,13 @@ module Test where
 
 import Test.Hspec
 import Tree
-import Typecheck
+import HindleyMilner
 
 test :: IO ()
 test = hspec $ do
-  describe "Typecheck:" $ do
+  describe "HindleyMilner:" $ do
     let shouldHaveType e t = typeOf e `shouldBe` Just t
-    let expectToFailTypechecking e = typeOf e `shouldBe` Nothing
+    let expectToFailTypeInference e = typeOf e `shouldBe` Nothing
 
     let true = Const $ Boolean True
     let false = Const $ Boolean False
@@ -31,4 +31,4 @@ test = hspec $ do
       If true three four `shouldHaveType` NumTy
 
     it "an if statement where the then and else branch are different should fail" $ do
-      expectToFailTypechecking $ If true true four
+      expectToFailTypeInference $ If true true four

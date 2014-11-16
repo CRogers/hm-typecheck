@@ -1,4 +1,4 @@
-module Typecheck where
+module HindleyMilner where
 
 import Tree
 
