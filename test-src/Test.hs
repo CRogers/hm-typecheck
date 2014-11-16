@@ -7,7 +7,8 @@ import Typecheck
 test :: IO ()
 test = hspec $ do
   describe "Typecheck:" $ do
-    let shouldHaveType e t = typeOf e `shouldBe` t
+    let shouldHaveType e t = typeOf e `shouldBe` Just t
+    let expectToFailTypechecking e = typeOf e `shouldBe` Nothing
 
     let true = Const $ Boolean True
     let false = Const $ Boolean False
@@ -29,5 +30,5 @@ test = hspec $ do
     it "an if statement where the then and else branch are both NumTys should be of type NumTy" $ do
       If true three four `shouldHaveType` NumTy
 
-    {-it "an if statement where the then and else branch are different should fail" $ do
-      typeOf (If true three four) `shouldBe` None-}
+    it "an if statement where the then and else branch are different should fail" $ do
+      expectToFailTypechecking $ If true true four
