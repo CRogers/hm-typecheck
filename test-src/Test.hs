@@ -32,3 +32,6 @@ test = hspec $ do
 
     it "an if statement where the then and else branch are different should fail" $ do
       expectToFailTypeInference $ If true true four
+
+    it "an if statement where the condition is not of type BoolTy should fail" $ do
+      expectToFailTypeInference $ If three true true
