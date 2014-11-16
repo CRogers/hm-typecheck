@@ -17,7 +17,7 @@ typeOf e = case e of
         tf <- typeOf f
         te <- typeOf e
         case tf of
-            _ :-> _ -> switch (== BoolTy) te
+            _ :-> tr -> if te == BoolTy then Just tr else Nothing
             _ -> Nothing
     If c a b -> do
         tc <- typeOf c

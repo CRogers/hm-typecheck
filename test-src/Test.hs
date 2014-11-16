@@ -52,5 +52,8 @@ test = hspec $ do
       it "applying a BoolTy to an abstraction of type BoolTy -> BoolTy should result in a BoolTy" $ do
         App (Abs "x" true) true `shouldHaveType` BoolTy
 
-      it "applying an IntTy to an abstraction of type BoolTy -> BoolTy should fail" $ do
+      it "applying an NumTy to an abstraction of type BoolTy -> BoolTy should fail" $ do
         expectToFailTypeInference $ App (Abs "x" true) three
+
+      it "applying a BoolTy to an abstraction of type BoolTy -> NumTy should result in an NumTy" $ do
+        App (Abs "x" four) true `shouldHaveType` NumTy
