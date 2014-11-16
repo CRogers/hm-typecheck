@@ -8,6 +8,7 @@ data Constant
 data Type
     = BoolTy
     | NumTy
+    | FuncTy
     deriving (Show, Eq)
 
 data Expr
