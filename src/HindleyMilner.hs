@@ -12,8 +12,9 @@ typeOf e = case e of
         return $ BoolTy :-> te
     App f e -> do
         tf <- typeOf f
+        te <- typeOf e
         case tf of
-            _ :-> _ -> return BoolTy
+            _ :-> _ -> if te == BoolTy then return BoolTy else Nothing
             _ -> Nothing
     If c a b -> do
         tc <- typeOf c
